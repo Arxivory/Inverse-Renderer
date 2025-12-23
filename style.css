@@ -1,13 +1,20 @@
 :root {
-    --primary: #2d2d2d;
-    --secondary: #1b1b1b;
+    --primary: #353535;
+    --secondary: #232323;
     --panel-curve: 5px;
     --panel-stroke: 1px solid #373737;
+    --panel-stroke-light: 1px solid #474747;
+    --text-primary: #ffffff;
+    --text-secondary: #d5d5d5;
+    --text-small: 15px;
+    --text-bold: 500;
 }
 
 * {
     margin: 0;
     padding: 0;
+    font-family: "Poppins";
+    color: var(--text-primary);
 }
 
 .parent {
@@ -25,6 +32,13 @@
     border-radius: var(--panel-curve);
     border: var(--panel-stroke);
     background-color: var(--primary);
+    padding: 9px 12px;
+    overflow-y: auto;
+}
+
+.panel-header {
+    font-size: var(--text-small);
+    font-weight: var(--text-bold);
 }
     
 .scene {
@@ -32,6 +46,8 @@
     grid-row: span 6 / span 6;
     grid-column-start: 2;
     grid-row-start: 1;
+    border: var(--panel-stroke-light);
+    padding: 0;
 }
 
 .tools {

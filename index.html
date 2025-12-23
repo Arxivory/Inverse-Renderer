@@ -5,12 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inverse Renderer</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="parent">
-        <div class="scene panel"></div>
-        <div class="tools panel"></div>
-        <div class="graph panel"></div>
+        <div class="scene panel">
+        </div>
+        <div class="tools panel">
+            <aside id="tools-panel">
+
+            <h2>Controls</h2>
+
+            <section class="tool-section">
+                <h3>Reference Scene</h3>
+                <select id="scene-select">
+                    <option value="scene1">Blender Scene 1</option>
+                    <option value="scene2">Blender Scene 2</option>
+                    <option value="scene3">Blender Scene 3</option>
+                </select>
+
+                <div id="reference-preview">
+                    <img id="reference-image" alt="Reference Image Preview" />
+                </div>
+            </section>
+
+            <section class="tool-section">
+                <h3>Optimization</h3>
+                <button id="run-optimization">Run Optimization</button>
+                <button id="step-optimization">Step</button>
+                <button id="reset-scene">Reset</button>
+            </section>
+
+            <section class="tool-section">
+                <h3>Optimize Parameters</h3>
+                <label>
+                    <input type="checkbox" id="opt-camera" checked />
+                    Camera
+                </label>
+                <label>
+                    <input type="checkbox" id="opt-light" checked />
+                    Light
+                </label>
+                <label>
+                    <input type="checkbox" id="opt-objects" checked />
+                    Objects
+                </label>
+            </section>
+
+            <section class="tool-section">
+                <h3>Numerical Settings</h3>
+
+                <label>
+                    Learning Rate (α)
+                    <input type="range" id="learning-rate" min="0.0001" max="0.1" step="0.0001" />
+                </label>
+
+                <label>
+                    Finite Difference ε
+                    <input type="range" id="epsilon" min="0.00001" max="0.01" step="0.00001" />
+                </label>
+
+                <label>
+                    Max Iterations
+                    <input type="number" id="max-iterations" value="200" />
+                </label>
+            </section>
+
+            <section class="tool-section">
+                <h3>Loss Function</h3>
+                <label>
+                    <input type="radio" name="loss-type" value="l2" checked />
+                    L2 (MSE)
+                </label>
+                <label>
+                    <input type="radio" name="loss-type" value="l1" />
+                    L1
+                </label>
+                <label>
+                    <input type="radio" name="loss-type" value="masked" />
+                    Masked L2
+                </label>
+            </section>
+
+            <section class="tool-section">
+                <h3>Visualization</h3>
+                <label>
+                    <input type="checkbox" id="show-camera" />
+                    Show Camera Frustum
+                </label>
+                <label>
+                    <input type="checkbox" id="show-light" />
+                    Show Light Position
+                </label>
+                <label>
+                    <input type="checkbox" id="show-bounds" />
+                    Show Object Bounds
+                </label>
+            </section>
+
+        </aside>
+        </div>
+        <div class="graph panel">
+            <aside>
+                <h2>Optimization</h2>
+
+                <canvas id="loss-graph"></canvas>
+
+                <div id="stats-panel">
+                    <div>Iteration: <span id="iteration-count">0</span></div>
+                    <div>Loss: <span id="current-loss">0.0</span></div>
+                    <div>Δ Loss: <span id="delta-loss">0.0</span></div>
+                </div>
+            </aside>
+        </div>
     </div>
 </body>
 </html>
