@@ -14,12 +14,10 @@
         <div class="scene panel">
         </div>
         <div class="tools panel">
-            <aside id="tools-panel">
-
-            <h2>Controls</h2>
+            <h2 class="panel-header">Controls</h2>
 
             <section class="tool-section">
-                <h3>Reference Scene</h3>
+                <h3 class="tool-section-header">Reference Scene</h3>
                 <select id="scene-select">
                     <option value="scene1">Blender Scene 1</option>
                     <option value="scene2">Blender Scene 2</option>
@@ -32,14 +30,14 @@
             </section>
 
             <section class="tool-section">
-                <h3>Optimization</h3>
+                <h3 class="tool-section-header">Optimization</h3>
                 <button id="run-optimization">Run Optimization</button>
                 <button id="step-optimization">Step</button>
                 <button id="reset-scene">Reset</button>
             </section>
 
             <section class="tool-section">
-                <h3>Optimize Parameters</h3>
+                <h3 class="tool-section-header">Optimize Parameters</h3>
                 <label>
                     <input type="checkbox" id="opt-camera" checked />
                     Camera
@@ -55,7 +53,7 @@
             </section>
 
             <section class="tool-section">
-                <h3>Numerical Settings</h3>
+                <h3 class="tool-section-header">Numerical Settings</h3>
 
                 <label>
                     Learning Rate (α)
@@ -74,7 +72,7 @@
             </section>
 
             <section class="tool-section">
-                <h3>Loss Function</h3>
+                <h3 class="tool-section-header">Loss Function</h3>
                 <label>
                     <input type="radio" name="loss-type" value="l2" checked />
                     L2 (MSE)
@@ -90,7 +88,7 @@
             </section>
 
             <section class="tool-section">
-                <h3>Visualization</h3>
+                <h3 class="tool-section-header">Visualization</h3>
                 <label>
                     <input type="checkbox" id="show-camera" />
                     Show Camera Frustum
@@ -104,21 +102,17 @@
                     Show Object Bounds
                 </label>
             </section>
-
-        </aside>
         </div>
         <div class="graph panel">
-            <aside>
-                <h2>Optimization</h2>
+            <h2 class="panel-header">Optimization</h2>
 
-                <canvas id="loss-graph"></canvas>
+            <canvas id="loss-graph"></canvas>
 
-                <div id="stats-panel">
-                    <div>Iteration: <span id="iteration-count">0</span></div>
-                    <div>Loss: <span id="current-loss">0.0</span></div>
-                    <div>Δ Loss: <span id="delta-loss">0.0</span></div>
-                </div>
-            </aside>
+            <div id="stats-panel">
+                <div>Iteration: <span id="iteration-count">0</span></div>
+                <div>Loss: <span id="current-loss">0.0</span></div>
+                <div>Δ Loss: <span id="delta-loss">0.0</span></div>
+            </div>
         </div>
     </div>
 </body>
