@@ -1,0 +1,47 @@
+:root {
+    --primary: #2d2d2d;
+    --secondary: #1b1b1b;
+    --panel-curve: 5px;
+    --panel-stroke: 1px solid #373737;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 6px;
+    width: 99%;
+    height: 98.4vh;
+    background-color: var(--secondary);
+    padding: 6px;
+}
+
+.panel {
+    border-radius: var(--panel-curve);
+    border: var(--panel-stroke);
+    background-color: var(--primary);
+}
+    
+.scene {
+    grid-column: span 4 / span 4;
+    grid-row: span 6 / span 6;
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.tools {
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.graph {
+    grid-row: span 3 / span 3;
+    grid-row-start: 4;
+}
+        
