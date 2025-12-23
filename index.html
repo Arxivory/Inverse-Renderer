@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="parent">
-        <div class="scene panel">
+        <div class="scene panel" id="scene-container">
         </div>
         <div class="tools panel">
             <h2 class="panel-header">Controls</h2>
@@ -115,5 +115,16 @@
             </div>
         </div>
     </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js"
+        }
+    }
+    </script>
+
+    <script type="module" src="./main.js"></script>
+
 </body>
 </html>
