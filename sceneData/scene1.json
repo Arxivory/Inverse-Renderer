@@ -8,7 +8,7 @@
     "lights": [
         {
             "type": "point",
-            "color": [1.0, 1.0, 1.0],
+            "color": [0.6, 0, 1.0],
             "intensity": 1.0,
             "position": [5, 5, 5]
         }
@@ -18,13 +18,25 @@
         {
             "id": "sofa01",
             "model": {
-                "obj": "../assets/objects/sofa.obj",
-                "mtl": "../assets/materials/sofa.mtl"
+                "obj": "../assets/objects/Sofa.obj",
+                "mtl": "../assets/materials/Sofa.mtl"
+            },
+            "transform": {
+                "position": [-3, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            }
+        },
+        {
+            "id": "statue",
+            "model": {
+                "obj": "../assets/objects/Statue.obj",
+                "mtl": "../assets/materials/Statue.mtl"
             },
             "transform": {
                 "position": [0, 0, 0],
                 "rotation": [0, 0, 0],
-                "scale": [1, 1, 1]
+                "scale": [0.5, 0.5, 0.5]
             }
         }
     ]

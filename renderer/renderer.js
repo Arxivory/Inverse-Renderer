@@ -58,9 +58,15 @@ export function addToScene(object) {
     scene.add(object);
 }
 
+function syncObjects() {
+    for (const obj of SceneState.objects)
+        obj.syncToMesh();
+}
+
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
+    syncObjects();
     renderer.render(scene, camera);
 }
 
