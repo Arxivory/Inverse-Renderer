@@ -16,6 +16,18 @@
 
     "objects": [
         {
+            "id": "room",
+            "model": {
+                "obj": "../assets/objects/Room.obj",
+                "mtl": "../assets/materials/Room.mtl"
+            },
+            "transform": {
+                "position": [0, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            }
+        },
+        {
             "id": "sofa01",
             "model": {
                 "obj": "../assets/objects/Sofa.obj",

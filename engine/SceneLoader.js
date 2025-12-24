@@ -24,6 +24,14 @@ export async function loadSceneFromJSON(path) {
             objDef.model.mtl
         )
 
+        mesh.traverse(child => {
+            if (child.isMesh) {
+                child.material.side = THREE.DoubleSide;
+                child.material.needsUpdate = true;
+            }
+        });
+
+
         addToScene(mesh);
 
         const objEntity = new ObjectEntity({
