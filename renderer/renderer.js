@@ -1,11 +1,10 @@
 import * as THREE from 'three';
 import { OrbitControls } from
   'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/controls/OrbitControls.js';
-
+import { SceneState } from '../engine/SceneState.js';
 
 let container;
 let width, height;
-let fov = 45, nearClip = 0.1, farClip = 1000;
 let scene, camera, renderer, controls;
 
 export function init(canvas) {
@@ -16,13 +15,21 @@ export function init(canvas) {
 
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(fov, width / height, nearClip, farClip);
-    camera.position.set(3, 3, 3);
-
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height, false);
     container.appendChild(renderer.domElement);
 
+}
+
+export function syncCameraAspect() {
+    SceneState.camera.sync(width / height);
+}
+
+export function setActiveCamera(cameraEntity) {
+    camera = cameraEntity.camera;
+}
+
+export function setupControls() {
     controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
@@ -44,7 +51,6 @@ function setupGridHelper() {
 }
 
 export function setupScene() {
-    setupLighting();
     setupGridHelper();
 }
 

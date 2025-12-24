@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import { SceneState } from './SceneState';
-import { CameraEntity } from "./CameraEntity";
-import { LightEntity } from "./LightEntity";
-import { ObjectEntity } from './ObjectEntity';
-import { loadOBJMTL } from '../renderer/loaders';
-import { addToScene } from "../renderer/renderer";
+import { SceneState } from './SceneState.js';
+import { CameraEntity } from "./CameraEntity.js";
+import { LightEntity } from "./LightEntity.js";
+import { ObjectEntity } from './ObjectEntity.js';
+import { loadOBJMTL } from '../renderer/loaders.js';
+import { addToScene } from "../renderer/renderer.js";
 
 export async function loadSceneFromJSON(path) {
     const response = await fetch(path);
