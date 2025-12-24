@@ -1,5 +1,11 @@
 export const SceneState = {
     objects: [],
     lights: [],
-    camera: null
+    camera: null,
+
+    reset() {
+        this.objects = [];
+        this.lights = [];
+        this.camera = null;
+    }
 };

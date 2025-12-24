@@ -17,4 +17,14 @@ export class CameraEntity {
             1000
         );
     }
+
+    sync(aspect) {
+        this.camera.fov = this.fov;
+        this.camera.aspect = aspect;
+
+        this.camera.position.copy(this.position);
+        this.canera.lookAt(this.lookAt);
+
+        this.camera.updateProjectionMatrix();
+    }
 }

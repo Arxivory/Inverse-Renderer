@@ -19,4 +19,10 @@ export class LightEntity {
 
         this.light.position.copy(this.position);
     }
+
+    sync() {
+        this.light.color.copy(this.color);
+        this.light.intensity = this.intensity;
+        this.position.copy(this.position);
+    }
 }
