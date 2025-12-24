@@ -48,6 +48,10 @@ export function setupScene() {
     setupGridHelper();
 }
 
+export function addToScene(object) {
+    scene.add(object);
+}
+
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
