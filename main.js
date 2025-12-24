@@ -25,6 +25,9 @@ setupControls();
 const pixels = rendererOffScreen();
 const loss = computeLoss(pixels);
 
+const lossSpan = document.getElementById('current-loss');
+lossSpan.innerText = loss;
+
 console.log('Computed Loss: ', loss);
 
 startRenderLoop();

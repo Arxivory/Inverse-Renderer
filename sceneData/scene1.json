@@ -1,16 +1,22 @@
 { 
     "camera": {
-        "fov": 45,
-        "position": [5, 5, 5],
+        "fov": 55,
+        "position": [6, 4, 8],
         "lookAt": [0, 0, 0]
     },
 
     "lights": [
         {
             "type": "point",
-            "color": [0.6, 0, 1.0],
+            "color": [0, 0, 1.0],
             "intensity": 1.0,
             "position": [5, 5, 5]
+        },
+        {
+            "type": "point",
+            "color": [1.0, 0, 0],
+            "intensity": 0.8,
+            "position": [-2, 5, 6]
         }
     ],
 
@@ -40,13 +46,25 @@
             }
         },
         {
+            "id": "table",
+            "model": {
+                "obj": "../assets/objects/Table.obj",
+                "mtl": "../assets/materials/Table.mtl"
+            },
+            "transform": {
+                "position": [0, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            }
+        },
+        {
             "id": "statue",
             "model": {
                 "obj": "../assets/objects/Statue.obj",
                 "mtl": "../assets/materials/Statue.mtl"
             },
             "transform": {
-                "position": [0, 0, 0],
+                "position": [0, 1, 0],
                 "rotation": [0, 0, 0],
                 "scale": [0.5, 0.5, 0.5]
             }
