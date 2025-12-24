@@ -1,4 +1,4 @@
-import { referenceImageData } from "../utils/imageReferenceLoader";
+import { referenceImageData } from "../utils/imageReferenceLoader.js";
 
 export function computeLoss(renderedPixels) {
     if (!referenceImageData)

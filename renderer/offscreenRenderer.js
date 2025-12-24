@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { getScene, getActiveCamera, getRenderer } from './renderer';
+import { getScene, getActiveCamera, getRenderer } from './renderer.js';
 
 let renderTarget = null;
 let width = 256;
@@ -21,7 +21,7 @@ export function initOffScreenRenderer(w = 256, h = 256) {
 export function rendererOffScreen() {
     const renderer = getRenderer();
     const scene = getScene();
-    const camera = getCamera();
+    const camera = getActiveCamera();
 
     if (!renderTarget) 
         throw new Error("Offscreen renderer not initialized.");
@@ -29,7 +29,7 @@ export function rendererOffScreen() {
     const prevTarget = renderer.getRenderTarget();
 
     renderer.setRenderTarget(renderTarget);
-    renderer.renderer(scene, camera);
+    renderer.render(scene, camera);
 
     renderer.readRenderTargetPixels(
         renderTarget,
