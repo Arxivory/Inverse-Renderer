@@ -41,4 +41,30 @@ export class ParameterVector {
             step: 0.1
         }));
     }
+
+    _addLightParams() {
+        SceneState.lights.forEach(light => {
+            ['x', 'y', 'z'].forEach(axis => {
+                this.parameters.push(new ParameterDescriptor({
+                    get: () => light.position[axis],
+                    set: v => light.position[axis] = v,
+                    step: 1e-2
+                }));
+            });
+
+            ['r', 'g', 'b'].forEach(channel => {
+                this.parameters.push(new ParameterDescriptor({
+                    get: () => light.color[channel],
+                    set: v => light.color[channel] = Math.min(1, Math.max(0, v)),
+                    step: 1e-2
+                }))
+            });
+
+            this.parameters.push(new ParameterDescriptor({
+                get: () => light.intensity,
+                set: v => light.intensity = Math.max(0, v),
+                step: 1e-2
+            }));
+        });
+    }
 }
