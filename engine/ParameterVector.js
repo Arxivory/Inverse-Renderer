@@ -67,4 +67,46 @@ export class ParameterVector {
             }));
         });
     }
+
+    _addObjectParams() {
+        SceneState.objects.forEach(obj => {
+            ['x', 'y', 'z'].forEach(axis => {
+                this.parameters.push(new ParameterDescriptor({
+                    get: () => obj.position[axis],
+                    set: v => obj.position[axis] = v,
+                    step: 1e-2
+                }));
+            });
+
+            ['x', 'y', 'z'].forEach(axis => {
+                this.parameters.push(new ParameterDescriptor({
+                    get: () => obj.rotation[axis],
+                    set: v => obj.rotation[axis] = v,
+                    step: 1e-3
+                }));
+            });
+
+            ['x', 'y', 'z'].forEach(axis => {
+                this.parameters.push(new ParameterDescriptor({
+                    get: () => obj.scale[axis],
+                    set: v => obj.scale[axis] = Math.max(1e-3, v),
+                    step: 1e-3
+                }));
+            });
+        })
+    }
+
+    getLength() {
+        return this.parameters.length;
+    }
+
+    getValues() {
+        return this.parameters.map(p => p.get());
+    }
+
+    setValues(values) {
+        values.forEach((v, i) => {
+            this.parameters[i].set(v);
+        })
+    }
 }
