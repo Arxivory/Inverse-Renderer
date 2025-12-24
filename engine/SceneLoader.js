@@ -1,22 +1,14 @@
-import * as THREE from 'three';
-import { ObjectEntity } from './ObjectEntity.js';
-import { SceneState } from './SceneState.js';
-import { loadOBJMTL } from '../renderer/loaders.js';
-import { addToScene } from '../renderer/renderer.js';
+import * as THREE from "three";
+import { SceneState } from './SceneState';
+import { ObjectEntity } from './ObjectEntity';
+import { loadOBJMTL } from '../renderer/loaders';
+import { addToScene } from "../renderer/renderer";
 
-export async function loadTestObject() {
-    const mesh = await loadOBJMTL('../assets/objects/Sofa.obj', '../assets/materials/Sofa.mtl');
+export async function loadSceneFromJSON(path) {
+    const response = await fetch(path);
+    const data = await response.json();
 
-    addToScene(mesh);
+    SceneState.camera = data.camera;
 
-    const objEntity = new ObjectEntity({
-        id: 'sofa1',
-        mesh,
-        position: new THREE.Vector3(0, 0, 0),
-        rotation: new THREE.Vector3(0, 0, 0),
-        scale: new THREE.Vector3(1, 1, 1)
-    });
-
-    SceneState.objects.push(objEntity);
+    
 }
-
