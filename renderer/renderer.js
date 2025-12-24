@@ -73,3 +73,15 @@ function animate() {
 export function startRenderLoop() {
     animate();
 }
+
+export function getScene() {
+    return scene;
+}
+
+export function getRenderer() {
+    return renderer;
+}
+
+export function getActiveCamera() {
+    return camera;
+}
