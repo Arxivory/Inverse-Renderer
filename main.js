@@ -5,6 +5,7 @@ import { SceneState } from "./engine/SceneState.js";
 import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
 import { init, setupScene, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect } from "./renderer/renderer.js";
 import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
+import { ParameterVector } from "./engine/ParameterVector.js";
 
 const container = document.getElementById('scene-container');
 
@@ -45,7 +46,9 @@ const maxIterationInput = document.getElementById('max-iterations');
 let learningRate = learningRateSlider.value;
 let iterations = maxIterationInput.value;
 
-const optimizer = new Optimizer(iterations, learningRate);
+const parameterVector = new ParameterVector();
+
+const optimizer = new Optimizer(parameterVector, iterations, learningRate);
 
 runOptimButton.addEventListener("click", optimize);
 learningRateSlider.addEventListener("change", (event) => {

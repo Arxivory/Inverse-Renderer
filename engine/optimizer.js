@@ -1,18 +1,17 @@
 import { FiniteDifferenceGradient } from "./GradientComputer.js";
-import { ParameterVector } from "./ParameterVector.js";
 
 export class Optimizer {
-    constructor(iterations, learningRate) {
+    constructor(parameterVector, iterations, learningRate) {
         this.iterations = iterations;
         this.learningRate = learningRate;
-        this.parameterVector = null;
+        this.parameterVector = parameterVector;
         this.gradient = null;
         this.build();
     }
 
     build() {
         this.gradient = new FiniteDifferenceGradient();
-        this.parameterVector = new ParameterVector();
+        this.parameterVector.build();
     }
 
     optimize() {
