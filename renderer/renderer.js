@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from
   'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 import { SceneState } from '../engine/SceneState.js';
+import { syncScene } from '../engine/SceneSynchronizer.js';
 
 let container;
 let width, height;
@@ -58,15 +59,14 @@ export function addToScene(object) {
     scene.add(object);
 }
 
-function syncObjects() {
-    for (const obj of SceneState.objects)
-        obj.syncToMesh();
-}
-
 function animate() {
     requestAnimationFrame(animate);
+
     controls.update();
-    syncObjects();
+
+    const aspect = width / height;
+    syncScene({aspect, syncCamera: false});
+
     renderer.render(scene, camera);
 }
 
@@ -84,4 +84,8 @@ export function getRenderer() {
 
 export function getActiveCamera() {
     return camera;
+}
+
+export function getAspectRatio() {
+    return width / height;
 }

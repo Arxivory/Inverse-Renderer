@@ -48,6 +48,18 @@
             }
         },
         {
+            "id": "sofa02",
+            "model": {
+                "obj": "../assets/objects/Sofa.obj",
+                "mtl": "../assets/materials/Sofa.mtl"
+            },
+            "transform": {
+                "position": [3, 0, 0],
+                "rotation": [0, 3.14159265359, 0],
+                "scale": [1, 1, 1]
+            }
+        },
+        {
             "id": "table",
             "model": {
                 "obj": "../assets/objects/Table.obj",
