@@ -106,11 +106,11 @@
         <div class="graph panel">
             <h2 class="panel-header">Optimization</h2>
 
-            <canvas id="loss-graph"></canvas>
+            <div id="loss-graph"></div>
 
             <div id="stats-panel">
-                <div>Iteration: <span id="iteration-count">0</span></div>
-                <div>Loss: <span id="current-loss">0.0</span></div>
+                <div>Iterations: <span id="iteration-count">0</span></div>
+                <div>Current Loss: <span id="current-loss">0.0</span></div>
                 <div>Δ Loss: <span id="delta-loss">0.0</span></div>
             </div>
         </div>
@@ -124,6 +124,8 @@
         }
     }
     </script>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <script type="module" src="./main.js"></script>
 

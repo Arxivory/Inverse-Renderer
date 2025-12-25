@@ -6,6 +6,8 @@ import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRe
 import { init, setupScene, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect } from "./renderer/renderer.js";
 import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
 import { ParameterVector } from "./engine/ParameterVector.js";
+import { plotLoss } from "./engine/LossPlot.js";
+import { DataLogger } from "./engine/DataLogger.js";
 
 const container = document.getElementById('scene-container');
 
@@ -29,7 +31,11 @@ let loss = computeLoss(pixels);
 const lossSpan = document.getElementById('current-loss');
 lossSpan.innerText = loss;
 
+const logger = new DataLogger();
+
+
 function optimize() {
+    logger.reset();
 
     optimizer.optimize();
 
@@ -37,6 +43,8 @@ function optimize() {
     loss = computeLoss(pixels);
 
     lossSpan.innerText = loss;
+
+    plotLoss(logger.getData());
 }
 
 const runOptimButton = document.getElementById('run-optimization');
@@ -48,7 +56,7 @@ let iterations = maxIterationInput.value;
 
 const parameterVector = new ParameterVector();
 
-const optimizer = new Optimizer(parameterVector, iterations, learningRate);
+const optimizer = new Optimizer(parameterVector, iterations, learningRate, logger);
 
 runOptimButton.addEventListener("click", optimize);
 learningRateSlider.addEventListener("change", (event) => {
