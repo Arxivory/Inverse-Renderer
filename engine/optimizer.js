@@ -20,8 +20,8 @@ export class Optimizer {
             const gradients = this.gradient.compute(this.parameterVector);
 
             for (let j = 0; j < this.parameterVector.getLength(); j++) {
-                const currentVal = this.parameterVector.getValue(i);
-                this.parameterVector.setValue(i, currentVal - this.learningRate * gradients[j]);
+                const currentVal = this.parameterVector.getValue(j);
+                this.parameterVector.setValue(j, currentVal - this.learningRate * gradients[j]);
             }
         }
     }

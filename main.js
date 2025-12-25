@@ -23,7 +23,7 @@ syncCameraAspect();
 
 setupControls();
 
-const optimizer = new Optimizer(2, 0.5);
+const optimizer = new Optimizer(1, 0.5);
 
 let pixels = rendererOffScreen();
 let loss = computeLoss(pixels);
