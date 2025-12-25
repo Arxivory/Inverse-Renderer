@@ -1,6 +1,7 @@
 import { computeLoss } from "./engine/LossEvaluator.js";
 import { loadSceneFromJSON } from "./engine/SceneLoader.js";
 import { SceneState } from "./engine/SceneState.js";
+import { testSensitivity } from "./engine/SensitivityTest.js";
 import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
 import { init, setupScene, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect } from "./renderer/renderer.js";
 import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
@@ -28,6 +29,14 @@ const loss = computeLoss(pixels);
 const lossSpan = document.getElementById('current-loss');
 lossSpan.innerText = loss;
 
-console.log('Computed Loss: ', loss);
+const deltas = [-0.2, -0.1, -0.05, 0, 0.05, 0.1, 0.2];
+
+const results = testSensitivity({
+    target: SceneState.camera.position,
+    property: 'x',
+    deltas
+})
+
+console.table(results);
 
 startRenderLoop();
