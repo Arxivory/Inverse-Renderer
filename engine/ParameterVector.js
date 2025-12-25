@@ -1,5 +1,5 @@
-import { SceneState } from "./SceneState";
-import { ParameterDescriptor } from "./ParameterDescriptor";
+import { SceneState } from "./SceneState.js";
+import { ParameterDescriptor } from "./ParameterDescriptor.js";
 
 export class ParameterVector {
     constructor() {
@@ -100,8 +100,16 @@ export class ParameterVector {
         return this.parameters.length;
     }
 
+    getValue(index) {
+        return this.parameters[index].get();
+    }
+
     getValues() {
         return this.parameters.map(p => p.get());
+    }
+
+    setValue(index, value) {
+        this.parameters[index].set(value);
     }
 
     setValues(values) {

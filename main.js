@@ -1,7 +1,7 @@
 import { computeLoss } from "./engine/LossEvaluator.js";
+import { Optimizer } from "./engine/optimizer.js";
 import { loadSceneFromJSON } from "./engine/SceneLoader.js";
 import { SceneState } from "./engine/SceneState.js";
-import { testSensitivity } from "./engine/SensitivityTest.js";
 import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
 import { init, setupScene, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect } from "./renderer/renderer.js";
 import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
@@ -23,20 +23,25 @@ syncCameraAspect();
 
 setupControls();
 
-const pixels = rendererOffScreen();
-const loss = computeLoss(pixels);
+const optimizer = new Optimizer(2, 0.5);
 
+let pixels = rendererOffScreen();
+let loss = computeLoss(pixels);
 const lossSpan = document.getElementById('current-loss');
 lossSpan.innerText = loss;
 
-const deltas = [-0.2, -0.1, -0.05, 0, 0.05, 0.1, 0.2];
+function optimize() {
 
-const results = testSensitivity({
-    target: SceneState.camera.position,
-    property: 'x',
-    deltas
-})
+    optimizer.optimize();
 
-console.table(results);
+    pixels = rendererOffScreen();
+    loss = computeLoss(pixels);
+
+    lossSpan.innerText = loss;
+}
+
+const runOptimButton = document.getElementById('run-optimization');
+
+runOptimButton.addEventListener("click", optimize);
 
 startRenderLoop();

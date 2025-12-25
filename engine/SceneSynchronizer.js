@@ -1,6 +1,8 @@
 import { SceneState } from "./SceneState.js";
 
 export function syncScene({aspect, syncCamera = false}) {
+    
+
     if (SceneState.camera && syncCamera)
         SceneState.camera.sync(aspect);
 
