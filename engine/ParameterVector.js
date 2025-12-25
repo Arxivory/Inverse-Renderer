@@ -112,9 +112,4 @@ export class ParameterVector {
         this.parameters[index].set(value);
     }
 
-    setValues(values) {
-        values.forEach((v, i) => {
-            this.parameters[i].set(v);
-        })
-    }
 }

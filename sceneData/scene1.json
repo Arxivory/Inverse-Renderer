@@ -1,7 +1,7 @@
 { 
     "camera": {
         "fov": 55,
-        "position": [6, 4, 8],
+        "position": [4, 4, 10],
         "lookAt": [0, 0, 0]
     },
 
@@ -42,8 +42,8 @@
                 "mtl": "../assets/materials/Sofa.mtl"
             },
             "transform": {
-                "position": [-3, 0, 0],
-                "rotation": [0, 0, 0],
+                "position": [-3, 0, -0.2],
+                "rotation": [0, -0.1, 0],
                 "scale": [1, 1, 1]
             }
         },

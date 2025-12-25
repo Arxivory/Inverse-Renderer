@@ -57,6 +57,4 @@ maxIterationInput.addEventListener("change", (event) => {
     console.log(optimizer.iterations);
 });
 
-
-
 startRenderLoop();

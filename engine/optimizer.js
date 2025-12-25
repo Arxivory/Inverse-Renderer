@@ -21,6 +21,7 @@ export class Optimizer {
 
             for (let j = 0; j < this.parameterVector.getLength(); j++) {
                 const currentVal = this.parameterVector.getValue(j);
+
                 this.parameterVector.setValue(j, currentVal - this.learningRate * gradients[j]);
             }
         }
