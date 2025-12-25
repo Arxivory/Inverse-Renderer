@@ -23,8 +23,6 @@ syncCameraAspect();
 
 setupControls();
 
-const optimizer = new Optimizer(1, 0.5);
-
 let pixels = rendererOffScreen();
 let loss = computeLoss(pixels);
 const lossSpan = document.getElementById('current-loss');
@@ -41,7 +39,24 @@ function optimize() {
 }
 
 const runOptimButton = document.getElementById('run-optimization');
+const learningRateSlider = document.getElementById('learning-rate');
+const maxIterationInput = document.getElementById('max-iterations');
+
+let learningRate = learningRateSlider.value;
+let iterations = maxIterationInput.value;
+
+const optimizer = new Optimizer(iterations, learningRate);
 
 runOptimButton.addEventListener("click", optimize);
+learningRateSlider.addEventListener("change", (event) => {
+    optimizer.learningRate = event.target.value;
+    console.log(optimizer.learningRate);
+});
+maxIterationInput.addEventListener("change", (event) => {
+    optimizer.iterations = event.target.value;
+    console.log(optimizer.iterations);
+});
+
+
 
 startRenderLoop();
