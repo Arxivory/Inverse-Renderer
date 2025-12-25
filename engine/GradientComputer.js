@@ -1,8 +1,7 @@
 import { evaluateScene } from "./SceneEvaluator.js";
 
 export class FiniteDifferenceGradient {
-    constructor(epsilon = 1e-3) {
-        this.epsilon = epsilon;
+    constructor() {
     }
 
     compute(params) {
@@ -10,17 +9,19 @@ export class FiniteDifferenceGradient {
         const parameters = params;
 
         for (let i = 0; i < params.getLength(); i++) {
+            const step = parameters.parameters[i].step;
+
             const original = parameters.getValue(i);
 
-            parameters.setValue(i, original + this.epsilon);
+            parameters.setValue(i, original + step);
             const lossPlus = evaluateScene();
 
-            parameters.setValue(i, original - this.epsilon);
+            parameters.setValue(i, original - step);
             const lossMinus = evaluateScene();
 
             parameters.setValue(i, original);
 
-            gradients[i] = (lossPlus - lossMinus) / (2 * this.epsilon);
+            gradients[i] = (lossPlus - lossMinus) / (2 * step);
         }
 
         return gradients;
