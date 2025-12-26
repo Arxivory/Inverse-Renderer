@@ -17,6 +17,8 @@ export class Optimizer {
             const lr = this.learningRate / (1 + 0.1 * i);
 
             for (let j = 0; j < this.parameterVector.getLength(); j++) {
+                if (!this.parameterVector.isActive(j)) continue;
+
                 const currentVal = this.parameterVector.getValue(j);
                 const maxGrad = 10.0;
                 const g = Math.max(-maxGrad, Math.min(maxGrad, gradients[j]));

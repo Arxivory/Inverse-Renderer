@@ -23,7 +23,8 @@ export class ParameterVector {
             this.parameters.push(new ParameterDescriptor({
                 get: () => cam.position[axis],
                 set: v => cam.position[axis] = v,
-                step: 1e-2
+                step: 1e-2,
+                group: "camera"
             }));
         });
 
@@ -31,14 +32,16 @@ export class ParameterVector {
             this.parameters.push(new ParameterDescriptor({
                 get: () => cam.lookAt[axis],
                 set: v => cam.lookAt[axis] = v,
-                step: 1e-2
+                step: 1e-2,
+                group: "camera"
             }));
         });
 
         this.parameters.push(new ParameterDescriptor({
             get: () => cam.fov,
             set: v => cam.fov = Math.max(1, Math.min(120, v)),
-            step: 0.1
+            step: 0.1,
+            group: "camera"
         }));
     }
 
@@ -48,7 +51,8 @@ export class ParameterVector {
                 this.parameters.push(new ParameterDescriptor({
                     get: () => light.position[axis],
                     set: v => light.position[axis] = v,
-                    step: 1e-2
+                    step: 1e-2,
+                    group: "light"
                 }));
             });
 
@@ -56,14 +60,16 @@ export class ParameterVector {
                 this.parameters.push(new ParameterDescriptor({
                     get: () => light.color[channel],
                     set: v => light.color[channel] = Math.min(1, Math.max(0, v)),
-                    step: 1e-2
+                    step: 1e-2,
+                    group: "light"
                 }))
             });
 
             this.parameters.push(new ParameterDescriptor({
                 get: () => light.intensity,
                 set: v => light.intensity = Math.max(0, v),
-                step: 1e-2
+                step: 1e-2,
+                group: "light"
             }));
         });
     }
@@ -74,7 +80,8 @@ export class ParameterVector {
                 this.parameters.push(new ParameterDescriptor({
                     get: () => obj.position[axis],
                     set: v => obj.position[axis] = v,
-                    step: 1e-2
+                    step: 1e-2,
+                    group: "object"
                 }));
             });
 
@@ -82,7 +89,8 @@ export class ParameterVector {
                 this.parameters.push(new ParameterDescriptor({
                     get: () => obj.rotation[axis],
                     set: v => obj.rotation[axis] = v,
-                    step: 1e-3
+                    step: 1e-3,
+                    group: "object"
                 }));
             });
 
@@ -90,7 +98,8 @@ export class ParameterVector {
                 this.parameters.push(new ParameterDescriptor({
                     get: () => obj.scale[axis],
                     set: v => obj.scale[axis] = Math.max(1e-3, v),
-                    step: 1e-3
+                    step: 1e-3,
+                    group: "object"
                 }));
             });
         })
@@ -110,6 +119,17 @@ export class ParameterVector {
 
     setValue(index, value) {
         this.parameters[index].set(value);
+    }
+
+    isActive(index) {
+        return this.parameters[index].active;
+    }
+
+    setGroupActive(group, active) {
+        this.parameters.forEach(p => {
+            if (p.group === group)
+                p.active = active;
+        })
     }
 
 }
