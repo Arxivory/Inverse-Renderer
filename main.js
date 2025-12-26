@@ -15,7 +15,7 @@ init(container);
 
 initOffScreenRenderer(256, 256);
 
-await loadReferenceImage('targetImages/Target 1.png', 256, 256);
+await loadReferenceImage('targetImages/TargetImg1.png', 256, 256);
 
 setupScene();
 
