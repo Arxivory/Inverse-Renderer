@@ -68,4 +68,30 @@ maxIterationInput.addEventListener("change", (event) => {
     console.log(optimizer.iterations);
 });
 
+const cameraCheckbox = document.getElementById('opt-camera');
+const lightCheckbox = document.getElementById('opt-light');
+const objectsCheckbox = document.getElementById('opt-objects');
+
+cameraCheckbox.addEventListener("change", function() {
+    if (this.checked)
+        parameterVector.setGroupActive("camera", true);
+    else
+        parameterVector.setGroupActive("camera", false);
+});
+
+lightCheckbox.addEventListener("change", function() {
+    if (this.checked)
+        parameterVector.setGroupActive("light", true);
+    else
+        parameterVector.setGroupActive("light", false);
+})
+
+objectsCheckbox.addEventListener("change", function() {
+    if (this.checked)
+        parameterVector.setGroupActive("object", true);
+    else
+        parameterVector.setGroupActive("object", false);
+})
+
+
 startRenderLoop();
