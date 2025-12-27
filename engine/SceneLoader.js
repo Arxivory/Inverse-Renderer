@@ -14,6 +14,9 @@ export async function loadSceneFromJSON(path) {
 
     for (const lightDef of data.lights) {
         const light = new LightEntity(lightDef);
+        light.light.castShadow = true;
+        light.light.shadow.mapSize.width = 1024;
+        light.light.shadow.mapSize.height = 1024;
         SceneState.lights.push(light);
         addToScene(light.light);
     }
@@ -28,6 +31,8 @@ export async function loadSceneFromJSON(path) {
             if (child.isMesh) {
                 child.material.side = THREE.DoubleSide;
                 child.material.needsUpdate = true;
+                child.castShadow = objDef.castShadow;
+                child.receiveShadow = objDef.receiveShadow;
             }
         });
 
