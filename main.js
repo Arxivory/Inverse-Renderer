@@ -71,6 +71,8 @@ maxIterationInput.addEventListener("change", (event) => {
 const cameraCheckbox = document.getElementById('opt-camera');
 const lightCheckbox = document.getElementById('opt-light');
 const objectsCheckbox = document.getElementById('opt-objects');
+const lossTypes = document.getElementsByName('loss-type');
+let selectedLossType = "l2";
 
 cameraCheckbox.addEventListener("change", function() {
     if (this.checked)
@@ -84,13 +86,20 @@ lightCheckbox.addEventListener("change", function() {
         parameterVector.setGroupActive("light", true);
     else
         parameterVector.setGroupActive("light", false);
-})
+});
 
 objectsCheckbox.addEventListener("change", function() {
     if (this.checked)
         parameterVector.setGroupActive("object", true);
     else
         parameterVector.setGroupActive("object", false);
+});
+
+lossTypes.forEach(lossTypeRadio => {
+    lossTypeRadio.addEventListener("change", function() {
+        selectedLossType = this.value;
+        console.log(selectedLossType);
+    })
 })
 
 
