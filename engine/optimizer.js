@@ -10,9 +10,9 @@ export class Optimizer {
         this.logger = logger;
     }
 
-    optimize() {
+    optimize(lossType) {
         for (let i = 0; i < this.iterations; i++) {
-            const gradients = this.gradient.compute(this.parameterVector);
+            const gradients = this.gradient.compute(this.parameterVector, lossType);
 
             const lr = this.learningRate / (1 + 0.1 * i);
 

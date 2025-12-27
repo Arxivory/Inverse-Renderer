@@ -37,10 +37,10 @@ const logger = new DataLogger();
 function optimize() {
     logger.reset();
 
-    optimizer.optimize();
+    optimizer.optimize(selectedLossType);
 
     pixels = rendererOffScreen();
-    loss = computeLoss(pixels);
+    loss = computeLoss(pixels, selectedLossType);
 
     lossSpan.innerText = loss;
 
@@ -54,25 +54,13 @@ const maxIterationInput = document.getElementById('max-iterations');
 let learningRate = learningRateSlider.value;
 let iterations = maxIterationInput.value;
 
-const parameterVector = new ParameterVector();
-
-const optimizer = new Optimizer(parameterVector, iterations, learningRate, logger);
-
-runOptimButton.addEventListener("click", optimize);
-learningRateSlider.addEventListener("change", (event) => {
-    optimizer.learningRate = event.target.value;
-    console.log(optimizer.learningRate);
-});
-maxIterationInput.addEventListener("change", (event) => {
-    optimizer.iterations = event.target.value;
-    console.log(optimizer.iterations);
-});
-
 const cameraCheckbox = document.getElementById('opt-camera');
 const lightCheckbox = document.getElementById('opt-light');
 const objectsCheckbox = document.getElementById('opt-objects');
 const lossTypes = document.getElementsByName('loss-type');
 let selectedLossType = "l2";
+
+const parameterVector = new ParameterVector();
 
 cameraCheckbox.addEventListener("change", function() {
     if (this.checked)
@@ -95,12 +83,21 @@ objectsCheckbox.addEventListener("change", function() {
         parameterVector.setGroupActive("object", false);
 });
 
+const optimizer = new Optimizer(parameterVector, iterations, learningRate, logger);
+
 lossTypes.forEach(lossTypeRadio => {
     lossTypeRadio.addEventListener("change", function() {
         selectedLossType = this.value;
-        console.log(selectedLossType);
     })
 })
+
+runOptimButton.addEventListener("click", optimize);
+learningRateSlider.addEventListener("change", (event) => {
+    optimizer.learningRate = event.target.value;
+});
+maxIterationInput.addEventListener("change", (event) => {
+    optimizer.iterations = event.target.value;
+});
 
 
 startRenderLoop();

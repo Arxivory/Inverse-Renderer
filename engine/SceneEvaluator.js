@@ -3,7 +3,7 @@ import { syncScene } from "./SceneSynchronizer.js";
 import { computeLoss } from "./LossEvaluator.js";
 import { getAspectRatio } from "../renderer/renderer.js";
 
-export function evaluateScene() {
+export function evaluateScene(lossType) {
     const aspect = getAspectRatio();
 
     syncScene({
@@ -12,5 +12,5 @@ export function evaluateScene() {
     });
 
     const pixels = rendererOffScreen();
-    return computeLoss(pixels);
+    return computeLoss(pixels, lossType);
 }

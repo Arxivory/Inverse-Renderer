@@ -4,7 +4,7 @@ export class FiniteDifferenceGradient {
     constructor() {
     }
 
-    compute(params) {
+    compute(params, lossType) {
         const gradients = new Array(params.getLength()).fill(0);
         const parameters = params;
 
@@ -14,10 +14,10 @@ export class FiniteDifferenceGradient {
             const original = parameters.getValue(i);
 
             parameters.setValue(i, original + step);
-            const lossPlus = evaluateScene();
+            const lossPlus = evaluateScene(this.lossType, lossType);
 
             parameters.setValue(i, original - step);
-            const lossMinus = evaluateScene();
+            const lossMinus = evaluateScene(this.lossType, lossType);
 
             parameters.setValue(i, original);
 
