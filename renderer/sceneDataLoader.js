@@ -1,6 +1,6 @@
 import { loadReferenceImage } from "../utils/imageReferenceLoader.js";
 import { loadSceneFromJSON } from "../engine/SceneLoader.js";
-import { init, setActiveCamera, setupControls, setupScene, syncCameraAspect } from "./renderer.js";
+import { init, setActiveCamera, setupControls, syncCameraAspect } from "./renderer.js";
 import { SceneState } from "../engine/SceneState.js";
 import { initOffScreenRenderer } from "./offscreenRenderer.js";
 
@@ -9,9 +9,7 @@ export async function initScene1(container) {
 
     initOffScreenRenderer(256, 256);
     
-    await loadReferenceImage('../targetImages/Target Image.png', 256, 256);
-
-    setupScene();
+    await loadReferenceImage('../targetImages/scene1/Target Image.png', 256, 256);
 
     await loadSceneFromJSON('../sceneData/scene1.json');
 
@@ -28,8 +26,6 @@ export async function initScene2(container) {
     initOffScreenRenderer(256, 256);
     
     await loadReferenceImage('targetImages/Target 1.png', 256, 256);
-
-    setupScene();
 
     await loadSceneFromJSON('sceneData/scene2.json');
 

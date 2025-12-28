@@ -7,6 +7,7 @@ import { syncScene } from '../engine/SceneSynchronizer.js';
 let container;
 let width, height;
 let scene, camera, renderer, controls;
+let animationId;
 
 export function init(canvas) {
     if (!container) container = canvas;
@@ -38,31 +39,12 @@ export function setupControls() {
     controls.dampingFactor = 0.05;
 }
 
-function setupLighting() {
-    const pointLighting = new THREE.PointLight(0xffffff);
-    pointLighting.position.set(5, 5, 5);
-
-    const ambientLighting = new THREE.AmbientLight(0xffffff, 0.3);
-
-    scene.add(pointLighting);
-    scene.add(ambientLighting);
-}
-
-function setupGridHelper() {
-    const gridHelper = new THREE.GridHelper(20, 20, 0x444444, 0x222222);
-    scene.add(gridHelper);
-}
-
-export function setupScene() {
-    //setupGridHelper();
-}
-
 export function addToScene(object) {
     scene.add(object);
 }
 
 function animate() {
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
 
     controls.update();
 
@@ -74,6 +56,38 @@ function animate() {
 
 export function startRenderLoop() {
     animate();
+}
+
+export function stopRenderLoop() {
+    if (animationId) cancelAnimationFrame(animationId);
+}
+
+export function disposeScene() {
+    if (!scene) return;
+
+    scene.traverse((object) => {
+        if (!object.isMesh) return;
+
+        object.geometry?.dispose();
+
+        if (object.material) {
+            if (Array.isArray(object.material)) {
+                object.material.forEach(m => m.dispose());
+            } else {
+                object.material.dispose();
+            }
+        }
+    });
+
+    renderer?.dispose();
+
+    if (renderer?.domElement?.parentNode)
+        renderer.domElement.parentNode.removeChild(renderer.domElement);
+
+    scene = null;
+    camera = null;
+    controls?.dispose();
+
 }
 
 export function getScene() {

@@ -3,22 +3,31 @@ import { Optimizer } from "./engine/optimizer.js";
 import { loadSceneFromJSON } from "./engine/SceneLoader.js";
 import { SceneState } from "./engine/SceneState.js";
 import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
-import { init, setupScene, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect } from "./renderer/renderer.js";
+import { init, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect, stopRenderLoop, disposeScene } from "./renderer/renderer.js";
 import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
 import { ParameterVector } from "./engine/ParameterVector.js";
 import { plotLoss } from "./engine/LossPlot.js";
 import { DataLogger } from "./engine/DataLogger.js";
 import { initScene1, initScene2 } from "./renderer/sceneDataLoader.js";
 
-const sceneSelect = document.getElementById('scene-select');
-
-sceneSelect.addEventListener("change", (event) => {
-    console.log(event.target.value);
-})
-
 let container = document.getElementById('scene-container');
 
-await initScene2(container);
+const sceneSelect = document.getElementById('scene-select');
+
+await initScene1(container);
+
+sceneSelect.addEventListener("change", async (event) => {
+    stopRenderLoop();
+    disposeScene();
+
+    if (event.target.value === "scene1")
+        await initScene1(container);
+    else 
+        await initScene2(container);
+
+    
+    startRenderLoop();
+});
 
 let pixels = rendererOffScreen();
 let loss = computeLoss(pixels);
@@ -91,6 +100,5 @@ learningRateSlider.addEventListener("change", (event) => {
 maxIterationInput.addEventListener("change", (event) => {
     optimizer.iterations = event.target.value;
 });
-
 
 startRenderLoop();
