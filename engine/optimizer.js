@@ -33,4 +33,8 @@ export class Optimizer {
         }
     }
 
+    updateParameterVector(newParameterVector) {
+        this.parameterVector = newParameterVector;
+    }
+
 }

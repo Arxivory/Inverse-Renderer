@@ -27,6 +27,9 @@ sceneSelect.addEventListener("change", async (event) => {
     else 
         await initScene2(container);
 
+    const newParameterVector = new ParameterVector();
+    optimizer.updateParameterVector(newParameterVector);
+
     
     startRenderLoop();
 });
