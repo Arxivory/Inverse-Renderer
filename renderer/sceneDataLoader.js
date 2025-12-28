@@ -9,7 +9,7 @@ export async function initScene1(container) {
 
     initOffScreenRenderer(256, 256);
     
-    await loadReferenceImage('../targetImages/scene1/Target Image.png', 256, 256);
+    await loadReferenceImage('../targetImages/scene1/Scene-1-Image-1.png', 256, 256);
 
     await loadSceneFromJSON('../sceneData/scene1.json');
 
@@ -25,7 +25,7 @@ export async function initScene2(container) {
     
     initOffScreenRenderer(256, 256);
     
-    await loadReferenceImage('../targetImages/scene2/Image 1.png', 256, 256);
+    await loadReferenceImage('../targetImages/scene2/Scene-2-Image-1.png', 256, 256);
 
     await loadSceneFromJSON('sceneData/scene2.json');
 

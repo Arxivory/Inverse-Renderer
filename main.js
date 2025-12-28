@@ -12,7 +12,19 @@ import { initScene1, initScene2 } from "./renderer/sceneDataLoader.js";
 
 let container = document.getElementById('scene-container');
 
+const imageSets = {
+    scene1: [
+        "targetImages/scene1/Scene-1-Image-1.png"
+    ],
+    scene2: [
+        "targetImages/scene2/Scene-2-Image-1.png",
+        "targetImages/scene2/Scene-2-Image-2.png",
+        "targetImages/scene2/Scene-2-Image-3.png"
+    ]
+};
+
 const sceneSelect = document.getElementById('scene-select');
+const imageSelect = document.getElementById('image-select');
 
 await initScene1(container);
 
