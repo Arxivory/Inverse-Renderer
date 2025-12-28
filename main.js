@@ -4,7 +4,7 @@ import { loadSceneFromJSON } from "./engine/SceneLoader.js";
 import { SceneState } from "./engine/SceneState.js";
 import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
 import { init, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect, stopRenderLoop, disposeScene } from "./renderer/renderer.js";
-import { loadReferenceImage, resetReferenceImage } from "./utils/imageReferenceLoader.js";
+import { loadReferenceImage, referenceImageData, resetReferenceImage } from "./utils/imageReferenceLoader.js";
 import { ParameterVector } from "./engine/ParameterVector.js";
 import { plotLoss } from "./engine/LossPlot.js";
 import { DataLogger } from "./engine/DataLogger.js";
@@ -25,8 +25,24 @@ const imageSets = {
 
 const sceneSelect = document.getElementById('scene-select');
 const imageSelect = document.getElementById('image-select');
+const imagePrev = document.getElementById('reference-image');
 
 await initScene1(container);
+
+updateImages("scene1");
+
+function updateImages(scene) {
+    imageSelect.innerHTML = "";
+
+    imageSets[scene].forEach((path, index) => {
+        const option = document.createElement("option");
+        option.value = path;
+        option.textContent = `Image ${index + 1}`;
+        imageSelect.appendChild(option);
+    })
+
+    imagePrev.src = imageSets[scene][0];
+}
 
 sceneSelect.addEventListener("change", async (event) => {
     stopRenderLoop();
@@ -34,17 +50,24 @@ sceneSelect.addEventListener("change", async (event) => {
     resetReferenceImage();
     SceneState.reset();
 
-    if (event.target.value === "scene1")
+    updateImages(event.target.value);
+
+    if (event.target.value === "scene1") 
         await initScene1(container);
     else 
         await initScene2(container);
 
     const newParameterVector = new ParameterVector();
     optimizer.updateParameterVector(newParameterVector);
-
     
     startRenderLoop();
 });
+
+imageSelect.addEventListener("change", async (e) => {
+    imagePrev.src = e.target.value;
+    resetReferenceImage();
+    await loadReferenceImage(e.target.value, 256, 256);
+})
 
 let pixels = rendererOffScreen();
 let loss = computeLoss(pixels);
