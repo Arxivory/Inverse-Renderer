@@ -25,7 +25,7 @@ export async function initScene2(container) {
     
     initOffScreenRenderer(256, 256);
     
-    await loadReferenceImage('targetImages/Target 1.png', 256, 256);
+    await loadReferenceImage('../targetImages/scene2/Image 1.png', 256, 256);
 
     await loadSceneFromJSON('sceneData/scene2.json');
 

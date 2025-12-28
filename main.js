@@ -4,7 +4,7 @@ import { loadSceneFromJSON } from "./engine/SceneLoader.js";
 import { SceneState } from "./engine/SceneState.js";
 import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
 import { init, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect, stopRenderLoop, disposeScene } from "./renderer/renderer.js";
-import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
+import { loadReferenceImage, resetReferenceImage } from "./utils/imageReferenceLoader.js";
 import { ParameterVector } from "./engine/ParameterVector.js";
 import { plotLoss } from "./engine/LossPlot.js";
 import { DataLogger } from "./engine/DataLogger.js";
@@ -19,6 +19,8 @@ await initScene1(container);
 sceneSelect.addEventListener("change", async (event) => {
     stopRenderLoop();
     disposeScene();
+    resetReferenceImage();
+    SceneState.reset();
 
     if (event.target.value === "scene1")
         await initScene1(container);

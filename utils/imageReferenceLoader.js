@@ -17,3 +17,7 @@ export function loadReferenceImage(url, width, height) {
         }
     })
 }
+
+export function resetReferenceImage() {
+    referenceImageData = null;
+}
