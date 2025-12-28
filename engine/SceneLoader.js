@@ -22,7 +22,11 @@ export async function loadSceneFromJSON(path) {
     }
 
     for (const objDef of data.objects) {
-        const mesh = await loadOBJMTL(
+        const mesh = ("tex" in objDef.model) ? await loadOBJMTL(
+            objDef.model.obj,
+            objDef.model.mtl,
+            objDef.model.tex
+        ) : await loadOBJMTL(
             objDef.model.obj,
             objDef.model.mtl
         )

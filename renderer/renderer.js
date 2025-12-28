@@ -17,8 +17,8 @@ export function init(canvas) {
     scene = new THREE.Scene();
 
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    //renderer.shadowMap.enabled = true;
-    //renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.setSize(width, height, false);
     container.appendChild(renderer.domElement);
 
@@ -54,7 +54,7 @@ function setupGridHelper() {
 }
 
 export function setupScene() {
-    setupGridHelper();
+    //setupGridHelper();
 }
 
 export function addToScene(object) {

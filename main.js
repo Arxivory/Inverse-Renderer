@@ -8,6 +8,7 @@ import { loadReferenceImage } from "./utils/imageReferenceLoader.js";
 import { ParameterVector } from "./engine/ParameterVector.js";
 import { plotLoss } from "./engine/LossPlot.js";
 import { DataLogger } from "./engine/DataLogger.js";
+import { initScene1, initScene2 } from "./renderer/sceneDataLoader.js";
 
 const sceneSelect = document.getElementById('scene-select');
 
@@ -15,22 +16,9 @@ sceneSelect.addEventListener("change", (event) => {
     console.log(event.target.value);
 })
 
-const container = document.getElementById('scene-container');
+let container = document.getElementById('scene-container');
 
-init(container);
-
-initOffScreenRenderer(256, 256);
-
-await loadReferenceImage('targetImages/Target Image.png', 256, 256);
-
-setupScene();
-
-await loadSceneFromJSON('sceneData/scene1.json');
-
-setActiveCamera(SceneState.camera);
-syncCameraAspect();
-
-setupControls();
+await initScene2(container);
 
 let pixels = rendererOffScreen();
 let loss = computeLoss(pixels);

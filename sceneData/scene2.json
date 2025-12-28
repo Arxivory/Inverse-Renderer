@@ -1,0 +1,91 @@
+{ 
+    "camera": {
+        "fov": 55,
+        "position": [4, 4, 10],
+        "lookAt": [0, 0, 0]
+    },
+
+    "lights": [
+        {
+            "id": "light1",
+            "type": "point",
+            "color": [1.0, 1.0, 1.0],
+            "intensity": 1.0,
+            "position": [3, 6, 3]
+        }
+    ],
+
+    "objects": [
+        {
+            "id": "base",
+            "model": {
+                "obj": "../assets/objects/Ground.obj",
+                "mtl": "../assets/materials/Ground.mtl",
+                "tex": "../assets/textures/GroundTex.png"
+            },
+            "transform": {
+                "position": [0, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            },
+            "castShadow": false,
+            "receiveShadow": true
+        },
+        {
+            "id": "statue",
+            "model": {
+                "obj": "../assets/objects/Statue.obj",
+                "mtl": "../assets/materials/Statue.mtl"
+            },
+            "transform": {
+                "position": [0, 0, 0],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            },
+            "castShadow": true,
+            "receiveShadow": false
+        },
+        {
+            "id": "pillar01",
+            "model": {
+                "obj": "../assets/objects/Pillar.obj",
+                "mtl": "../assets/materials/Pillar.mtl"
+            },
+            "transform": {
+                "position": [-2, 0, -3],
+                "rotation": [0, 0, 0.2],
+                "scale": [1, 1, 1]
+            },
+            "castShadow": true,
+            "receiveShadow": false
+        },
+        {
+            "id": "pillar02",
+            "model": {
+                "obj": "../assets/objects/Pillar.obj",
+                "mtl": "../assets/materials/Pillar.mtl"
+            },
+            "transform": {
+                "position": [-3.5, 0, -1],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            },
+            "castShadow": true,
+            "receiveShadow": false
+        },
+        {
+            "id": "sphere",
+            "model": {
+                "obj": "../assets/objects/Sphere.obj",
+                "mtl": "../assets/materials/Sphere.mtl"
+            },
+            "transform": {
+                "position": [3, 1.7, -0.5],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            },
+            "castShadow": true,
+            "receiveShadow": false
+        }
+    ]
+}
