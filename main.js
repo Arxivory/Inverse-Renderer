@@ -1,10 +1,9 @@
 import { computeLoss } from "./engine/LossEvaluator.js";
 import { Optimizer } from "./engine/optimizer.js";
-import { loadSceneFromJSON } from "./engine/SceneLoader.js";
 import { SceneState } from "./engine/SceneState.js";
-import { initOffScreenRenderer, rendererOffScreen } from "./renderer/offscreenRenderer.js";
-import { init, startRenderLoop, setupControls, setActiveCamera, syncCameraAspect, stopRenderLoop, disposeScene } from "./renderer/renderer.js";
-import { loadReferenceImage, referenceImageData, resetReferenceImage } from "./utils/imageReferenceLoader.js";
+import { rendererOffScreen } from "./renderer/offscreenRenderer.js";
+import { startRenderLoop, stopRenderLoop, disposeScene } from "./renderer/renderer.js";
+import { loadReferenceImage, resetReferenceImage } from "./utils/imageReferenceLoader.js";
 import { ParameterVector } from "./engine/ParameterVector.js";
 import { plotLoss } from "./engine/LossPlot.js";
 import { DataLogger } from "./engine/DataLogger.js";
