@@ -9,6 +9,12 @@ import { ParameterVector } from "./engine/ParameterVector.js";
 import { plotLoss } from "./engine/LossPlot.js";
 import { DataLogger } from "./engine/DataLogger.js";
 
+const sceneSelect = document.getElementById('scene-select');
+
+sceneSelect.addEventListener("change", (event) => {
+    console.log(event.target.value);
+})
+
 const container = document.getElementById('scene-container');
 
 init(container);
@@ -32,7 +38,6 @@ const lossSpan = document.getElementById('current-loss');
 lossSpan.innerText = loss;
 
 const logger = new DataLogger();
-
 
 function optimize() {
     logger.reset();
