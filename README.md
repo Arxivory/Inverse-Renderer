@@ -13,7 +13,6 @@ This project demonstrates **inverse rendering** in a web-based environment using
 - **Camera Optimization**: Optimizes camera position and orientation along with scene parameters.
 - **Light and Object Parameter Optimization**: Adjusts light color, position, and object translations to match the reference image.
 - **Numerical Gradients**: Uses finite-difference approximation for gradient-based optimization.
-- **Minimal Web UI**: Dropdown for preset images, real-time rendered scene, iteration counter, and loss display.
 
 ---
 
