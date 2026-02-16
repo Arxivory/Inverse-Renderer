@@ -4,6 +4,8 @@
 
 This project demonstrates **inverse rendering** in a web-based environment using Three.js. The system estimates **camera pose, light position and color, and object placements** by optimizing an image-space loss relative to a reference image. Unlike differentiable rendering approaches, the Three.js forward renderer is **non-differentiable**, so **numerical gradient approximation via finite differences** is leveraged to iteratively update scene parameters.
 
+**Note**: Project under development and preparing for GPU acceleration.
+
 ## The implementation runs entirely in the browser, making it accessible and interactive.
 
 ## Key Features
@@ -63,6 +65,5 @@ Applications and motivations include:
 ## Future Improvements
 
 - Multi-view reference images for improved convergence.
-- GPU-accelerated numerical gradient computation via WebGL shaders.
 - Support for more complex materials and textures.
 - Integration with WebAssembly for faster performance in browser.
